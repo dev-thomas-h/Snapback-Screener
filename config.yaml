@@ -1,0 +1,53 @@
+# ============================================================================
+# Momentum Leaders Snapback — Strategy & Risk Configuration
+# ============================================================================
+# Every ambiguous rule from the AlphaInsider (Oct 23, 2026) post is defined
+# explicitly here as a configurable parameter. See README.md for full details.
+
+strategy:
+  # 1. Universe settings
+  universe: "SP500"
+  universe_refresh_days: 7
+
+  # 2. Trend filter: stock must close strictly above its 200-day simple moving average
+  sma_period: 200
+
+  # 3. Momentum filter: 6-1 month total return (from ~126 trading days ago to ~21 trading days ago)
+  # Standard academic definition skipping the most recent 1-month reversal window.
+  momentum_lookback_start: 126
+  momentum_lookback_end: 21
+  momentum_top_pct: 0.20          # Top 20% of S&P 500 universe by 6-1M momentum
+
+  # 4. Entry trigger: Wilder's RSI(2) drops below 15 AND close is in bottom 10% of day's range
+  rsi_period: 2
+  rsi_entry_threshold: 15.0       # Buy when RSI(2) < 15.0
+  close_range_threshold: 0.10     # (Close - Low) / (High - Low) <= 0.10 (bottom 10% of day's range)
+
+  # 5. Exit rules: sell on first close above prior day's high OR after 20 trading days
+  exit_above_prior_high: true     # If Close[t] > High[t-1], exit at Open[t+1]
+  max_hold_days: 20               # Entry day = Day 1; if held through Day 20 close, sell at Day 21 Open
+
+  # 6. Portfolio & position sizing limits
+  max_positions: 10               # Maximum concurrent positions held at once
+  max_new_entries_per_day: 2      # At most 2 new entry orders per day (ranked by highest 6-1M momentum)
+  target_gross_leverage: 2.0      # Target up to 2.0x account equity across all 10 slots (20% per slot)
+  max_gross_leverage: 2.0         # Hard ceiling: never exceed 2.0x gross exposure
+
+  # 7. Watchlist / Radar threshold for the dashboard (shows top-20% momentum stocks nearing trigger)
+  radar_rsi_threshold: 45.0
+
+backtest:
+  start_date: "2008-01-01"
+  end_date: null                  # null = latest available trading day
+  initial_capital: 1000.0         # Matches post's $1,000 starting capital example
+  benchmark_symbol: "SPY"
+  slippage_bps: 5.0               # 5 basis points (0.05%) slippage per fill (entry and exit)
+  margin_interest_annual: 0.055   # 5.5% annualized borrow rate charged daily on exposure > 1.0x equity
+  default_universe_limit: 120     # Number of top S&P 500 liquid constituents for fast interactive runs (0 = all ~500)
+
+risk:
+  alpaca_paper: true              # MANDATORY: App refuses to start if false or if live endpoint detected
+  daily_loss_limit_pct: 0.05      # 5.0% daily loss guard: halts new entries if intraday equity drops > 5%
+  kill_switch_file: "KILL_SWITCH"  # Presence of this file immediately blocks orders & cancels open orders
+  log_file: "data/snapback.log"
+  database_path: "data/snapback.db"

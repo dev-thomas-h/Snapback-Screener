@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --glass-surface: rgba(255, 255, 255, 0.64);
+    --glass-surface-elevated: rgba(255, 255, 255, 0.80);
+    --glass-border: rgba(255, 255, 255, 0.88);
+    --glass-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.065), inset 0 1px 0 0 rgba(255, 255, 255, 0.92);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F2F6FC;
+    color: #0F172A;
+    overflow-x: hidden;
+  }
+}
+
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76) 0%, rgba(255, 255, 255, 0.54) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 16px 42px -12px rgba(15, 23, 42, 0.06), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+
+.glass-panel-subtle {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.58) 0%, rgba(248, 250, 252, 0.42) 100%);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  box-shadow: 0 8px 24px -8px rgba(15, 23, 42, 0.045), inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px -4px rgba(15, 23, 42, 0.06), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Custom sleek light scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.65);
+}

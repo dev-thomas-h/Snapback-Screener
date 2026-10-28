@@ -1,0 +1,14 @@
+alpaca-py>=0.21.0
+pandas>=2.0.0
+numpy>=1.24.0
+yfinance>=0.2.36
+PyYAML>=6.0
+fastapi>=0.109.0
+uvicorn>=0.27.0
+matplotlib>=3.7.0
+pytest>=7.4.0
+httpx>=0.26.0
+python-dotenv>=1.0.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+streamlit>=1.30.0

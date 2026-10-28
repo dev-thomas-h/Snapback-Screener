@@ -1,0 +1,24 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Data & runtime logs
+data/*.db
+data/*.db-journal
+data/*.log
+data/cache/
+KILL_SWITCH
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+.DS_Store
