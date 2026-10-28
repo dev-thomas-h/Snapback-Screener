@@ -90,3 +90,13 @@ Opens the full-stack **Light-Toned Glassmorphic React + ReactBits Dashboard** at
 ```bash
 ./.venv/bin/pytest tests/ -v
 ```
+
+---
+
+## 5. Agent & Developer Guidelines
+
+See [`AGENTS.md`](file:///Users/thorgy17/Snapback%20Screener/AGENTS.md) for session-to-session contributor rules, including:
+- **No automatic remote pushes** (`git push` is never run automatically after edits).
+- **Mandatory documentation synchronization** (`README.md`, `config.yaml`, and `AGENTS.md` are updated alongside any code or parameter change).
+- **Paper-only safety & UI build invariants** (rebuilding `frontend/dist` after UI edits and running `pytest`).
+
